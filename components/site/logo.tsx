@@ -1,31 +1,26 @@
+import Image from "next/image";
+
 import { cn } from "@/lib/utils";
 
 /**
- * Marca DeehZigner recriada em SVG a partir do layout:
- * "DEEH" em bold + assinatura "Zigner" em script, com a lâmpada de bolhas.
+ * Sub-logo (brandmark) DeehZigner — usada na navbar e no footer.
+ * A marca completa (lockup com "DEEH Zigner") fica no hero.
  */
-export function Logo({
-  className,
-  withIcon = true,
-}: {
-  className?: string;
-  withIcon?: boolean;
-}) {
+export function Logo({ className }: { className?: string }) {
   return (
-    <span className={cn("inline-flex items-center gap-2 select-none", className)}>
-      {withIcon && <BulbMark className="h-7 w-7 shrink-0" />}
-      <span className="relative leading-none">
-        <span className="font-heading text-xl font-extrabold tracking-tight text-white">
-          DEEH
-        </span>
-        <span className="font-script ml-1 text-lg font-bold text-brand">
-          Zigner
-        </span>
-      </span>
-    </span>
+    <Image
+      src="/brand/deeh-mark.png"
+      alt="DeehZigner"
+      width={605}
+      height={266}
+      className={cn("h-9 w-auto", className)}
+    />
   );
 }
 
+/**
+ * Versão vetorial da lâmpada — usada em avatares/placeholders (Sobre, Contato).
+ */
 export function BulbMark({ className }: { className?: string }) {
   return (
     <svg

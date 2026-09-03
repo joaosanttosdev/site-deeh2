@@ -1,7 +1,7 @@
+import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
-import { BulbMark } from "@/components/site/logo";
 import { stats, whatsappUrl, site } from "@/lib/site";
 
 const tools = ["Cdr", "Ps", "Ai", "Pr"];
@@ -14,16 +14,15 @@ export function Hero() {
     >
       <div className="mx-auto grid max-w-6xl items-center gap-12 px-5 lg:grid-cols-2 lg:gap-8 lg:px-8">
         {/* Marca */}
-        <div className="animate-in-up flex flex-col items-center text-center lg:items-start lg:text-left">
-          <BulbMark className="h-40 w-40 drop-shadow-[0_20px_60px_rgba(53,160,255,0.45)] sm:h-52 sm:w-52" />
-          <div className="mt-2 leading-none">
-            <span className="font-heading block text-6xl font-extrabold tracking-tighter text-white sm:text-7xl">
-              DEEH
-            </span>
-            <span className="font-script -mt-3 block text-4xl font-bold text-brand sm:text-5xl">
-              Zigner
-            </span>
-          </div>
+        <div className="animate-in-up flex justify-center lg:justify-start">
+          <Image
+            src="/brand/deeh-hero.png"
+            alt="DeehZigner"
+            width={630}
+            height={513}
+            priority
+            className="h-auto w-full max-w-[300px] drop-shadow-[0_24px_70px_rgba(53,160,255,0.45)] sm:max-w-[380px]"
+          />
         </div>
 
         {/* Conteúdo */}
