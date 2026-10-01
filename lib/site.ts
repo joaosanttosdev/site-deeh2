@@ -8,8 +8,8 @@ export const site = {
   instagram: "https://instagram.com/deehzigner",
   instagramHandle: "@deehzigner",
   email: "andersondesigner2021@gmail.com",
-  serviceArea: "100% remoto — atendo clientes de todo o Brasil e do exterior",
-  hours: "Seg a Sex — 9h às 18h",
+  serviceArea: "100% remoto - atendo clientes de todo o Brasil e do exterior",
+  hours: "Seg a Sex - 9h às 18h",
 } as const;
 
 export const whatsappUrl = `https://wa.me/${site.whatsapp}?text=${encodeURIComponent(

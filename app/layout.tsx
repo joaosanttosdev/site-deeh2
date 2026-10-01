@@ -1,5 +1,11 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Poppins, Dancing_Script, League_Spartan } from "next/font/google";
+import {
+  Inter,
+  Poppins,
+  Dancing_Script,
+  League_Spartan,
+  Great_Vibes,
+} from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({
@@ -26,6 +32,14 @@ const dancingScript = Dancing_Script({
 const leagueSpartan = League_Spartan({
   variable: "--font-display",
   weight: ["600", "700", "800", "900"],
+  subsets: ["latin"],
+  display: "swap",
+});
+
+// Fonte cursiva do "projeto?" na seção de contato.
+const greatVibes = Great_Vibes({
+  variable: "--font-vibes",
+  weight: "400",
   subsets: ["latin"],
   display: "swap",
 });
@@ -76,7 +90,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="pt-BR"
-      className={`dark ${inter.variable} ${poppins.variable} ${dancingScript.variable} ${leagueSpartan.variable} h-full`}
+      className={`dark ${inter.variable} ${poppins.variable} ${dancingScript.variable} ${leagueSpartan.variable} ${greatVibes.variable} h-full`}
     >
       <body className="min-h-full flex flex-col bg-background text-foreground">
         {children}
