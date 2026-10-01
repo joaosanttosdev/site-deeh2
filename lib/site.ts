@@ -33,56 +33,48 @@ export const stats = [
 
 export type Service = {
   title: string;
+  /** Ícone em /public/services/<icon>.webp (traço branco extraído do design). */
+  icon: string;
+  /** `\n` marca as quebras de linha do design (usadas só no desktop). */
   description: string;
-  icon: keyof typeof serviceIconMap;
 };
-
-// chaves mapeadas para ícones lucide no componente
-export const serviceIconMap = {
-  "pen-tool": "pen-tool",
-  monitor: "monitor",
-  fingerprint: "fingerprint",
-  megaphone: "megaphone",
-  sparkles: "sparkles",
-  "package-2": "package-2",
-} as const;
 
 export const services: Service[] = [
   {
     title: "Design Gráfico",
-    icon: "pen-tool",
+    icon: "design-grafico",
     description:
-      "Criação de projetos gráficos, trabalhos exclusivos para o público determinado. Folders, cartão de visita, pastas, folhetos, flyers, catálogos, rótulos, etiquetas, informativos, entre outros tipos de materiais gráficos.",
+      "Criação de projetos gráficos, trabalhos exclusivos para o público\ndeterminado. Folders, cartão de visita, pastas, folhetos, flyers,\ncatálogos, rótulos, etiquetas, informativos, entre outros tipos de\nmateriais gráficos.",
   },
   {
     title: "Design Digital",
-    icon: "monitor",
+    icon: "design-digital",
     description:
-      "Criação e produção de layouts usuais e acessíveis, acompanhando as tecnologias e tendências do mercado. Site institucional, loja virtual (e-commerce), portais, landing page, marketing e todos os materiais digitais.",
+      "Criação e produção de layouts usuais e acessíveis, acompanhando\nas tecnologias e tendências do mercado. Site Institucional,\nLoja Virtual (E-commerce), Portais, Landing page, Marketing\ne todos materiais digitais.",
   },
   {
     title: "Identidade Visual",
-    icon: "fingerprint",
+    icon: "identidade-visual",
     description:
-      "Criação de identidade visual, incluindo manual de aplicação personalizado da marca, em diversos formatos, tipos e estilos para publicações e orientações, juntamente com a criação do material de papelaria.",
+      "Criação de identidade visual, incluindo manual de aplicação\npersonalizado da marca, em diversos formatos, tipos e estilos\npara publicações e orientações, juntamente com a criação do\nmaterial de papelaria.",
   },
   {
-    title: "Comunicação Visual",
-    icon: "megaphone",
+    title: "Comunicação visual",
+    icon: "comunicacao-visual",
     description:
-      "Transformo ideias em soluções visuais que destacam sua marca e fortalecem sua comunicação. Criação de artes para fachadas, banners, adesivos, placas, cartões, mídias sociais e materiais personalizados, com qualidade, criatividade e profissionalismo.",
+      "Transformo ideias em soluções visuais que destacam sua marca e\nfortalecem sua comunicação. Criação de artes para fachadas,\nbanners, adesivos, placas, cartões, mídias sociais e materiais\npersonalizados, com qualidade, criatividade e profissionalismo.",
   },
   {
     title: "Criação de Logotipos",
-    icon: "sparkles",
+    icon: "logotipos",
     description:
-      "Crio logotipos únicos e profissionais que representam a essência da sua marca. Desenvolvo identidades visuais marcantes, modernas e estratégicas para destacar seu negócio e transmitir credibilidade.",
+      "Crio logotipos únicos e profissionais que representam a\nessência da sua marca. Desenvolvo identidades visuais\nmarcantes, modernas e estratégicas para destacar seu\nnegócio e transmitir credibilidade.",
   },
   {
     title: "Rótulos e Estampa",
-    icon: "package-2",
+    icon: "rotulos",
     description:
-      "Realizo serviços de design gráfico para empresas, marcas e projetos de todos os segmentos. Desenvolvo rótulos, etiquetas, catálogos, estampas, ilustrações, materiais para impressão, artes para redes sociais e muito mais, sempre com criatividade, qualidade e atenção aos detalhes.",
+      "Realizo serviços de design gráfico para empresas, marcas e projetos\nde todos os segmentos. Desenvolvo rótulos, etiquetas, catálogos,\nestampas, ilustrações, materiais para impressão, artes para redes\nsociais e muito mais, sempre com criatividade, qualidade e atenção\naos detalhes.",
   },
 ];
 

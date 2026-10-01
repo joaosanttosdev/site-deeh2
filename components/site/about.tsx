@@ -1,88 +1,118 @@
-import { BulbMark } from "@/components/site/logo";
-import { site } from "@/lib/site";
+import type { CSSProperties } from "react";
+import Image from "next/image";
 
-const skills = [
-  "Photoshop",
-  "Illustrator",
-  "CorelDRAW",
-  "Identidade de marca",
-  "Arte finalista",
-  "Social media",
-];
+import { cn } from "@/lib/utils";
+
+/*
+ * Mesmo esquema do hero: mobile first (arte em cima, texto embaixo) e, a
+ * partir de `xl`, réplica exata da prancheta de 1440×810 do design, com tudo
+ * medido em `--u` (1 px do design, escala com a largura da tela até 1920px).
+ *
+ * O texto usa Arial como no design; o parágrafo é comprimido na horizontal
+ * (scaleX) exatamente como no arquivo, só no desktop.
+ */
+const place =
+  "xl:absolute xl:left-[calc(var(--x)*var(--u))] xl:top-[calc(var(--y)*var(--u))]";
+
+function at(x: number, y: number) {
+  return { "--x": x, "--y": y } as CSSProperties;
+}
+
+const arial = "font-[Arial,Helvetica,sans-serif]";
 
 export function About() {
   return (
     <section
       id="sobre"
-      className="scroll-mt-24 border-t border-border bg-background py-20 lg:py-28"
+      className="@container relative scroll-mt-20 overflow-hidden bg-black pt-16 pb-24 sm:pt-20 xl:p-0"
     >
-      <div className="mx-auto grid max-w-6xl items-center gap-12 px-5 lg:grid-cols-[minmax(0,1fr)_1.15fr] lg:gap-16 lg:px-8">
-        {/* Retrato */}
-        <div className="relative mx-auto w-full max-w-sm">
-          <span
-            aria-hidden="true"
-            className="font-heading pointer-events-none absolute -top-6 left-1/2 -z-0 -translate-x-1/2 text-6xl font-extrabold tracking-tighter text-white/5 sm:text-8xl"
-          >
-            ANDERSON
-          </span>
-          <div className="relative z-10 aspect-square overflow-hidden rounded-full border border-brand/30 bg-gradient-to-br from-secondary via-background to-secondary p-1">
-            <div className="flex h-full w-full flex-col items-center justify-center gap-3 rounded-full bg-streaks">
-              <BulbMark className="h-20 w-20" />
-              <span className="font-heading text-5xl font-extrabold text-white">
-                AN
-              </span>
-              <span className="text-xs uppercase tracking-[0.3em] text-muted-foreground">
-                DeehZigner
-              </span>
-            </div>
-          </div>
-        </div>
+      <Image
+        src="/about/bg.jpg"
+        alt=""
+        fill
+        sizes="100vw"
+        className="object-cover object-bottom"
+      />
 
-        {/* Texto */}
-        <div className="flex flex-col gap-6">
-          <div className="flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.2em] text-brand">
-            <span className="h-px w-8 bg-brand/60" aria-hidden="true" />
-            Sobre
-          </div>
-          <div>
-            <h2 className="font-heading text-3xl font-extrabold leading-tight sm:text-4xl">
-              {site.owner}
-            </h2>
-            <p className="mt-1 text-lg font-medium text-brand-muted">
-              {site.role}
-            </p>
-          </div>
+      <div className="relative mx-auto flex max-w-xl flex-col px-5 [--u:calc(min(100cqw,1920px)/1440)] sm:max-w-2xl xl:block xl:aspect-[1440/810] xl:w-[calc(1440*var(--u))] xl:max-w-none xl:px-0">
+        {/* Retrato + ferramentas + "ANDERSON" em arco */}
+        <Image
+          src="/about/anderson.webp"
+          alt="Anderson Nogueira Silva"
+          width={1600}
+          height={1331}
+          sizes="(min-width: 1280px) 42vw, 480px"
+          className={cn(
+            place,
+            "mx-auto h-auto w-full max-w-[420px] xl:max-w-none xl:w-[calc(604.25*var(--u))]",
+          )}
+          style={at(146.75, 155.5)}
+        />
 
-          <div className="space-y-4 text-base leading-relaxed text-muted-foreground text-pretty">
-            <p>
-              Designer Gráfico com mais de 12 anos de experiência em criação
-              visual, identidade de marca, materiais digitais e impressos.
-              Atuação em desenvolvimento de artes para redes sociais, rótulos,
-              embalagens, comunicação visual e fechamento de arquivos para
-              produção.
-            </p>
-            <p>
-              Experiência com atendimento ao cliente, aprovação de materiais e
-              criação estratégica para marcas. Domínio de Photoshop, Illustrator,
-              CorelDRAW e ferramentas digitais.
-            </p>
-            <p>
-              Atendimento 100% home office, com foco em design criativo e
-              comunicação visual de alto impacto.
-            </p>
-          </div>
+        <h2
+          className={cn(
+            place,
+            arial,
+            "mt-10 text-[2.75rem] leading-[1.117] font-bold text-white sm:text-[3.25rem] xl:mt-0 xl:text-[calc(56.65*var(--u))]",
+          )}
+          style={at(837.4, 223)}
+        >
+          ANDERSON
+          <span className="sr-only"> Nogueira Silva</span>
+        </h2>
 
-          <ul className="flex flex-wrap gap-2">
-            {skills.map((skill) => (
-              <li
-                key={skill}
-                className="rounded-full border border-border bg-secondary px-3 py-1 text-sm text-foreground/90"
-              >
-                {skill}
-              </li>
-            ))}
-          </ul>
-        </div>
+        <p
+          aria-hidden
+          className={cn(
+            place,
+            arial,
+            "text-[2rem] leading-[1.117] text-[#91d8f7] sm:text-[2.4rem] xl:text-[calc(41.73*var(--u))]",
+          )}
+          style={at(834, 274)}
+        >
+          NOGUEIRA SILVA
+        </p>
+
+        <p
+          className={cn(
+            place,
+            arial,
+            "mt-2 text-base leading-[1.117] text-white sm:text-lg xl:mt-0 xl:text-[calc(21.52*var(--u))]",
+          )}
+          style={at(835.6, 322)}
+        >
+          DESIGNER GRÁFICO/ARTE FINALISTA
+        </p>
+
+        <p
+          className={cn(
+            place,
+            arial,
+            "mt-8 text-base leading-relaxed text-white text-pretty sm:text-lg xl:mt-0 xl:w-[calc(535.5*var(--u))] xl:origin-top-left xl:scale-x-[0.8558] xl:text-justify xl:text-[calc(19.72*var(--u))] xl:leading-[calc(22*var(--u))]",
+          )}
+          style={at(836.15, 422)}
+        >
+          Designer Gráfico com mais de 10 anos de experiência em criação visual,
+          identidade de marca, materiais digitais e impressos. Atuação em
+          desenvolvimento de artes para redes sociais, rótulos, embalagens,
+          comunicação visual e fechamento de arquivos para produção. Experiência
+          com atendimento ao cliente, aprovação de materiais e criação
+          estratégica para marcas. Domínio de Photoshop, Illustrator, CorelDRAW e
+          ferramentas digitais.
+        </p>
+
+        <p
+          className={cn(
+            place,
+            arial,
+            "mt-4 text-base leading-relaxed text-white text-pretty sm:text-lg xl:mt-0 xl:w-[calc(490*var(--u))] xl:origin-top-left xl:scale-x-[0.889] xl:text-[calc(19.72*var(--u))] xl:leading-[calc(22*var(--u))]",
+          )}
+          style={at(836.9, 598)}
+        >
+          Busco oportunidade home office para atuar com design
+          <br className="hidden xl:inline" /> criativo e comunicação visual de
+          alto impacto.
+        </p>
       </div>
     </section>
   );
