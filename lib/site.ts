@@ -25,10 +25,10 @@ export const navLinks = [
 ] as const;
 
 export const stats = [
-  { value: "+5.000", label: "Projetos entregues" },
+  { value: "+5.000", label: "Projetos" },
   { value: "+12", label: "Anos de experiência" },
   { value: "+400", label: "Clientes satisfeitos" },
-  { value: "Qualidade", label: "Aprovada e elogiada por todos" },
+  { value: "Qualidade", label: "Aprovada e elogiado por todos" },
 ] as const;
 
 export type Service = {

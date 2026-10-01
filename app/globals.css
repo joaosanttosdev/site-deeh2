@@ -10,6 +10,7 @@
   --font-sans: var(--font-sans);
   --font-heading: var(--font-heading);
   --font-script: var(--font-script);
+  --font-display: var(--font-display);
 
   --color-brand: var(--brand);
   --color-brand-foreground: var(--brand-foreground);

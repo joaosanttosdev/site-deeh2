@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Poppins, Dancing_Script } from "next/font/google";
+import { Inter, Poppins, Dancing_Script, League_Spartan } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({
@@ -18,6 +18,14 @@ const poppins = Poppins({
 const dancingScript = Dancing_Script({
   variable: "--font-script",
   weight: ["600", "700"],
+  subsets: ["latin"],
+  display: "swap",
+});
+
+// Substituta da Geometric 415 BT Black usada no design do hero.
+const leagueSpartan = League_Spartan({
+  variable: "--font-display",
+  weight: ["600", "700", "800", "900"],
   subsets: ["latin"],
   display: "swap",
 });
@@ -68,7 +76,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="pt-BR"
-      className={`dark ${inter.variable} ${poppins.variable} ${dancingScript.variable} h-full`}
+      className={`dark ${inter.variable} ${poppins.variable} ${dancingScript.variable} ${leagueSpartan.variable} h-full`}
     >
       <body className="min-h-full flex flex-col bg-background text-foreground">
         {children}
