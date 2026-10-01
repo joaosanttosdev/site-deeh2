@@ -42,7 +42,7 @@ export function About() {
           alt="Anderson Nogueira Silva"
           width={1600}
           height={1331}
-          sizes="(min-width: 1280px) 42vw, 480px"
+          sizes="(min-width: 1280px) 42vw, min(420px, 100vw)"
           className={cn(
             place,
             "animate-float mx-auto h-auto w-full max-w-[420px] xl:max-w-none xl:w-[calc(604.25*var(--u))]",

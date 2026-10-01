@@ -9,7 +9,6 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-sans);
   --font-heading: var(--font-heading);
-  --font-script: var(--font-script);
   --font-display: var(--font-display);
   --font-vibes: var(--font-vibes);
 
@@ -224,12 +223,24 @@
     animation: ken-burns 22s ease-in-out infinite alternate;
   }
 
+  /*
+   * As animações contínuas usam só transform/translate/scale/opacity, que
+   * rodam no compositor (GPU) sem repintar a página — filter e box-shadow
+   * animados custavam segundos de main thread no Lighthouse.
+   */
   .animate-glow {
     animation: glow 2.8s ease-in-out infinite;
   }
 
-  .animate-wa-pulse {
-    animation: wa-pulse 2.4s ease-out infinite;
+  /* Anel que expande e some em volta do botão (precisa de position). */
+  .animate-wa-pulse::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    border: 2px solid rgba(34, 135, 67, 0.7);
+    pointer-events: none;
+    animation: wa-ring 2.4s ease-out infinite;
   }
 }
 
@@ -265,9 +276,14 @@ html.reveal [data-reveal="zoom"]:not(.is-visible) {
   scale: 0.94;
 }
 
+/*
+ * Começa em 0.01 (e não 0): visualmente igual, mas o Chrome considera o
+ * elemento pintado desde o primeiro quadro — senão o LCP do hero só conta
+ * depois da animação/JS e o PageSpeed acusa LCP alto.
+ */
 @keyframes in-up {
   from {
-    opacity: 0;
+    opacity: 0.01;
     transform: translateY(24px);
   }
   to {
@@ -320,20 +336,24 @@ html.reveal [data-reveal="zoom"]:not(.is-visible) {
 @keyframes glow {
   0%,
   100% {
-    filter: drop-shadow(0 0 0 rgba(145, 216, 247, 0));
+    scale: 1;
+    opacity: 1;
   }
   50% {
-    filter: drop-shadow(0 0 10px rgba(145, 216, 247, 0.85));
+    scale: 1.14;
+    opacity: 0.85;
   }
 }
 
-@keyframes wa-pulse {
+@keyframes wa-ring {
   0% {
-    box-shadow: 0 0 0 0 rgba(51, 204, 102, 0.55);
+    opacity: 0.9;
+    transform: scale(1);
   }
   70%,
   100% {
-    box-shadow: 0 0 0 14px rgba(51, 204, 102, 0);
+    opacity: 0;
+    transform: scale(1.12, 1.4);
   }
 }
 
@@ -347,7 +367,7 @@ html.reveal [data-reveal="zoom"]:not(.is-visible) {
   .animate-float,
   .animate-ken-burns,
   .animate-glow,
-  .animate-wa-pulse {
+  .animate-wa-pulse::after {
     animation: none;
   }
   html.reveal [data-reveal] {

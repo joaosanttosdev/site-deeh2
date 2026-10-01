@@ -55,7 +55,6 @@ export function Portfolio() {
                 fill
                 sizes="(min-width: 1024px) 25vw, (min-width: 640px) 33vw, 50vw"
                 className="object-contain p-4 transition-transform duration-500 group-hover:scale-105"
-                priority={index < 4}
               />
               <figcaption className="absolute inset-x-0 bottom-0 translate-y-2 bg-gradient-to-t from-black/85 via-black/50 to-transparent p-3 pt-8 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
                 <p className="text-sm font-semibold text-white">{item.client}</p>

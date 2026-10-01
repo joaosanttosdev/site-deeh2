@@ -1,10 +1,15 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
+
+const NUMBER = /^(\D*)([\d.]+)(\D*)$/;
 
 /**
  * Conta de 0 até o número de `value` (ex.: "+5.000") quando entra na tela.
  * Textos sem número (ex.: "Qualidade") são exibidos como estão.
+ *
+ * Atualiza o texto direto no DOM (sem estado do React) para não re-renderizar
+ * a cada quadro. O HTML do servidor já traz o valor final.
  */
 export function CountUp({
   value,
@@ -13,16 +18,19 @@ export function CountUp({
   value: string;
   duration?: number;
 }) {
-  const match = value.match(/^(\D*)([\d.]+)(\D*)$/);
-  const hasNumber = match !== null;
-  const target = match ? Number(match[2].replace(/\./g, "")) : 0;
   const ref = useRef<HTMLSpanElement>(null);
-  const [current, setCurrent] = useState<number | null>(null);
 
   useEffect(() => {
     const el = ref.current;
-    if (!hasNumber || !el) return;
+    const match = value.match(NUMBER);
+    if (!el || !match) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const [, prefix, digits, suffix] = match;
+    const target = Number(digits.replace(/\./g, ""));
+    const render = (n: number) => {
+      el.textContent = `${prefix}${n.toLocaleString("pt-BR")}${suffix}`;
+    };
 
     let frame = 0;
     const observer = new IntersectionObserver(
@@ -32,8 +40,7 @@ export function CountUp({
         const start = performance.now();
         const tick = (now: number) => {
           const t = Math.min((now - start) / duration, 1);
-          const eased = 1 - Math.pow(1 - t, 3);
-          setCurrent(Math.round(target * eased));
+          render(Math.round(target * (1 - Math.pow(1 - t, 3))));
           if (t < 1) frame = requestAnimationFrame(tick);
         };
         frame = requestAnimationFrame(tick);
@@ -45,17 +52,15 @@ export function CountUp({
     return () => {
       observer.disconnect();
       cancelAnimationFrame(frame);
+      el.textContent = value;
     };
-  }, [hasNumber, target, duration]);
+  }, [value, duration]);
 
-  if (!match) return <>{value}</>;
-
-  const shown =
-    current === null ? value : `${match[1]}${current.toLocaleString("pt-BR")}${match[3]}`;
+  if (!NUMBER.test(value)) return <>{value}</>;
 
   return (
     <span ref={ref} aria-label={value}>
-      {shown}
+      {value}
     </span>
   );
 }

@@ -43,7 +43,8 @@ export function Hero() {
         src="/hero/bg.jpg"
         alt=""
         fill
-        fetchPriority="high"
+        loading="eager"
+        fetchPriority="low"
         sizes="100vw"
         className="animate-ken-burns object-cover"
       />
@@ -57,7 +58,7 @@ export function Hero() {
           height={1291}
           loading="eager"
           fetchPriority="high"
-          sizes="(min-width: 1280px) 40vw, 360px"
+          sizes="(min-width: 1280px) 37vw, (min-width: 640px) 340px, 250px"
           className={cn(
             place,
             sized,
@@ -73,7 +74,8 @@ export function Hero() {
           width={1200}
           height={616}
           loading="eager"
-          sizes="(min-width: 1280px) 30vw, 300px"
+          sizes="(min-width: 1280px) 30vw, (min-width: 640px) 340px, 270px"
+          quality={60}
           className={cn(
             place,
             sized,
@@ -100,6 +102,7 @@ export function Hero() {
             alt=""
             width={220}
             height={240}
+            sizes="(min-width: 1280px) 4vw, 48px"
             className="animate-glow relative top-[0.12em] -mt-[0.4em] ml-[0.45em] inline-block h-[1.02em] w-auto align-baseline"
           />
         </h1>
@@ -135,6 +138,7 @@ export function Hero() {
                 title={tool.alt}
                 width={140}
                 height={140}
+                sizes="(min-width: 1280px) 3vw, 36px"
                 className="size-9 transition-transform duration-300 hover:-translate-y-1 hover:scale-110 xl:size-[calc(34.75*var(--u))]"
               />
             </li>

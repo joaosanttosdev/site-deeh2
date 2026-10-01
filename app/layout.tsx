@@ -1,11 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import {
-  Inter,
-  Poppins,
-  Dancing_Script,
-  League_Spartan,
-  Great_Vibes,
-} from "next/font/google";
+import { Inter, Poppins, League_Spartan, Great_Vibes } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({
@@ -14,34 +8,31 @@ const inter = Inter({
   display: "swap",
 });
 
+// Títulos do Portfólio e do FAQ (abaixo da dobra: sem preload, para não
+// disputar banda com o hero).
 const poppins = Poppins({
   variable: "--font-heading",
-  weight: ["500", "600", "700", "800"],
-  subsets: ["latin"],
-  display: "swap",
-});
-
-const dancingScript = Dancing_Script({
-  variable: "--font-script",
   weight: ["600", "700"],
   subsets: ["latin"],
   display: "swap",
+  preload: false,
 });
 
 // Substituta da Geometric 415 BT Black usada no design do hero.
+// Fonte variável: um arquivo só com todos os pesos.
 const leagueSpartan = League_Spartan({
   variable: "--font-display",
-  weight: ["600", "700", "800", "900"],
   subsets: ["latin"],
   display: "swap",
 });
 
-// Fonte cursiva do "projeto?" na seção de contato.
+// Fonte cursiva do "projeto?" na seção de contato (abaixo da dobra).
 const greatVibes = Great_Vibes({
   variable: "--font-vibes",
   weight: "400",
   subsets: ["latin"],
   display: "swap",
+  preload: false,
 });
 
 const siteUrl = "https://deehzigner.com.br";
@@ -90,7 +81,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="pt-BR"
-      className={`dark ${inter.variable} ${poppins.variable} ${dancingScript.variable} ${leagueSpartan.variable} ${greatVibes.variable} h-full`}
+      className={`dark ${inter.variable} ${poppins.variable} ${leagueSpartan.variable} ${greatVibes.variable} h-full`}
     >
       <body className="min-h-full flex flex-col bg-background text-foreground">
         {children}

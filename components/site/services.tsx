@@ -51,6 +51,7 @@ export function Services() {
       id="atuacao"
       className="@container scroll-mt-20 bg-black px-5 py-10 sm:py-14 lg:px-20 xl:py-0"
     >
+      <h2 className="sr-only">Atuação</h2>
       <div className="relative mx-auto [--u:calc(min(100cqw,1920px)/1440)] xl:aspect-[1440/810] xl:w-[calc(1440*var(--u))]">
         {/* Fundo do card (no desktop é só decoração; os itens ficam na prancheta) */}
         <div
@@ -89,6 +90,7 @@ export function Services() {
                   alt=""
                   width={w}
                   height={h}
+                  sizes="(min-width: 1280px) 9vw, 64px"
                   data-reveal="zoom"
                   className={cn(
                     place,

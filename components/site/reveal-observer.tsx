@@ -32,29 +32,28 @@ function reveal(el: HTMLElement) {
  */
 export function RevealObserver() {
   useEffect(() => {
-    const elements = Array.from(
-      document.querySelectorAll<HTMLElement>("[data-reveal]"),
-    );
+    const elements = document.querySelectorAll<HTMLElement>("[data-reveal]");
 
-    for (const el of elements) {
-      const rect = el.getBoundingClientRect();
-      if (rect.top < window.innerHeight && rect.bottom > 0) finish(el);
-    }
-    document.documentElement.classList.add("reveal");
-
+    // O primeiro retorno do observer diz o que já está na tela (sem medir o
+    // layout à força): isso aparece direto, e só então a animação é ligada.
+    let first = true;
     const observer = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
           if (!entry.isIntersecting) continue;
-          reveal(entry.target as HTMLElement);
-          observer.unobserve(entry.target);
+          const el = entry.target as HTMLElement;
+          observer.unobserve(el);
+          if (first) finish(el);
+          else reveal(el);
+        }
+        if (first) {
+          first = false;
+          document.documentElement.classList.add("reveal");
         }
       },
       { rootMargin: "0px 0px -8% 0px", threshold: 0.1 },
     );
-    for (const el of elements) {
-      if (el.hasAttribute("data-reveal")) observer.observe(el);
-    }
+    elements.forEach((el) => observer.observe(el));
 
     return () => observer.disconnect();
   }, []);

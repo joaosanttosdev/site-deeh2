@@ -166,6 +166,7 @@ export function Contact() {
                     alt=""
                     width={iconW * 4}
                     height={iconH * 4}
+                    sizes="(min-width: 1280px) 2vw, 24px"
                     className="h-auto w-[calc(var(--w)*1px)] xl:w-[calc(var(--w)*var(--u))]"
                     style={{ "--w": iconW } as CSSProperties}
                   />
@@ -249,6 +250,7 @@ export function Contact() {
             alt={site.owner}
             width={300}
             height={300}
+            sizes="(min-width: 1280px) 7vw, 96px"
             className={cn(
               place,
               "mt-7 size-24 rounded-full transition-[scale] duration-300 hover:scale-105 xl:mt-0 xl:size-[calc(98.75*var(--u))]",
@@ -278,7 +280,7 @@ export function Contact() {
             className={cn(
               place,
               arial,
-              "mt-7 flex h-14 w-full max-w-[244px] items-center justify-center gap-2.5 rounded-[10px] animate-wa-pulse bg-[#33cc66] text-base font-bold text-white transition-[scale,background-color] duration-300 hover:scale-[1.04] hover:bg-[#2db85b] xl:mt-0 xl:h-[calc(56*var(--u))] xl:w-[calc(244*var(--u))] xl:max-w-none xl:gap-[calc(9.3*var(--u))] xl:rounded-[calc(10*var(--u))] xl:text-[calc(16.15*var(--u))]",
+              "relative mt-7 flex h-14 w-full max-w-[244px] items-center justify-center gap-2.5 rounded-[10px] animate-wa-pulse bg-[#228743] text-base font-bold text-white transition-[scale,background-color] duration-300 hover:scale-[1.04] hover:bg-[#1c7238] xl:mt-0 xl:h-[calc(56*var(--u))] xl:w-[calc(244*var(--u))] xl:max-w-none xl:gap-[calc(9.3*var(--u))] xl:rounded-[calc(10*var(--u))] xl:text-[calc(16.15*var(--u))]",
             )}
             style={{ ...at(904.5, 569), ...revealDelay(580) }}
             data-reveal
