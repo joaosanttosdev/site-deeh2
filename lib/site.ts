@@ -125,42 +125,42 @@ export const portfolioItems: PortfolioItem[] = [
 export const faq = [
   {
     q: "Quanto tempo demora para ficar pronto?",
-    a: "O prazo depende do escopo. Um logotipo leva em média de 5 a 10 dias úteis; identidades visuais completas e projetos maiores, de 15 a 25 dias úteis. Você recebe um cronograma logo após a aprovação do briefing.",
-  },
-  {
-    q: "Como funciona o pagamento via PIX em duas etapas?",
-    a: "50% na aprovação do orçamento, para iniciar o projeto, e 50% na entrega dos arquivos finais. Assim fica seguro para os dois lados.",
+    a: "O prazo varia de acordo com o serviço escolhido: de 2 a 7 dias úteis. O prazo exato está indicado em cada serviço.",
   },
   {
     q: "Posso parcelar no cartão?",
-    a: "Sim. É possível parcelar no cartão de crédito através de link de pagamento. As taxas da operadora são informadas antes de fechar.",
-  },
-  {
-    q: "Você trabalha com qualquer segmento?",
-    a: "Sim. Já atendi nutrição, engenharia, advocacia, comércio, igrejas, moda e muito mais. O processo se adapta à realidade de cada marca.",
+    a: "Sim! Porém, o parcelamento do serviço terá o acréscimo dos juros do cartão de crédito.",
   },
   {
     q: "Os arquivos são meus após a entrega?",
-    a: "Totalmente. Depois do pagamento final, todos os direitos de uso da arte são transferidos para você, com os arquivos abertos e em alta resolução.",
-  },
-  {
-    q: "Como envio minhas referências e materiais?",
-    a: "Por WhatsApp, Google Drive ou e-mail. No início do projeto envio um formulário de briefing para organizar textos, fotos e referências.",
+    a: "Sim. Após a entrega final e pagamento completo, todos os direitos de uso dos arquivos são transferidos para você. Você pode usar em qualquer aplicação.",
   },
   {
     q: "E se eu não gostar do resultado?",
-    a: "Cada projeto inclui rodadas de ajustes previstas em contrato. Trabalhamos o conceito até você aprovar, sempre dentro do que foi alinhado no briefing.",
-  },
-  {
-    q: "Qual o prazo de feedback para manter o projeto fluindo?",
-    a: "O ideal é retornar cada apresentação em até 3 dias úteis. Feedbacks rápidos mantêm o cronograma e a entrega no prazo combinado.",
+    a: "Cada projeto inclui 4 rodadas de alterações totalmente livres, e trabalho junto com você até alinhar o resultado com sua visão. Caso, mesmo após as revisões, o projeto não atenda suas expectativas: para pagamentos via PIX (duas etapas), a primeira etapa não é reembolsável, pois cobre o trabalho já realizado de pesquisa e criação. Para pagamentos integrais via cartão, é feita a devolução de 50% do valor. Meu compromisso é entregar algo que você tenha orgulho de usar — por isso o acompanhamento é próximo do início ao fim.",
   },
   {
     q: "O que acontece se eu mudar o briefing durante o projeto?",
-    a: "Pequenos ajustes são absorvidos naturalmente. Mudanças de direção que ampliam o escopo geram um aditivo de prazo e valor, combinado antes de seguir.",
+    a: "Alterações no briefing após o início do projeto podem gerar custo adicional, dependendo do escopo da mudança.",
+  },
+  {
+    q: "Como funciona o pagamento via PIX em duas etapas?",
+    a: "Você paga 50% do valor na contratação para iniciar o projeto. Os outros 50% são pagos somente após a aprovação final do trabalho. Assim, você só conclui o pagamento quando estiver satisfeito.",
+  },
+  {
+    q: "Você trabalha com qualquer segmento?",
+    a: "Sim. Atuando no mercado desde 2014, já atendi empresas de alimentação, tecnologia, saúde, moda, pet, fitness, advocacia e muitos outros nichos.",
+  },
+  {
+    q: "Como envio minhas referências e materiais?",
+    a: "Após a contratação, você pode enviar tudo diretamente pelo WhatsApp: imagens de referência, textos, logos antigos, qualquer material que ajude no briefing.",
+  },
+  {
+    q: "Qual o prazo de feedback para manter o projeto fluindo?",
+    a: "Peço que responda em até 48 horas úteis. Projetos sem retorno por 7 dias serão pausados e retomados quando você retornar.",
   },
   {
     q: "Quais arquivos recebo na entrega?",
-    a: "Arquivos abertos (AI, CDR, PSD conforme o projeto), além de PNG, JPG, PDF e versões para impressão e para redes sociais. Identidades incluem manual de aplicação.",
+    a: "Você recebe todos os formatos profissionais: vetorial editável (.AI, .SVG, .EPS), PDF em CMYK e RGB, imagens em alta resolução (.JPG, .PNG com fundo transparente). Tudo pronto para usar em qualquer aplicação — digital ou impressa.",
   },
 ];
