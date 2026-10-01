@@ -2,7 +2,7 @@ export const site = {
   name: "DeehZigner",
   owner: "Anderson Nogueira Silva",
   role: "Designer Gráfico / Arte Finalista",
-  whatsapp: "5500000000000", // TODO: número real da Deeh
+  whatsapp: "5511991064072",
   whatsappMessage:
     "Olá Anderson! Vi seu site e quero conversar sobre um projeto de design.",
   instagram: "https://instagram.com/deehzigner",
