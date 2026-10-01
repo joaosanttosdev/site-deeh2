@@ -13,6 +13,7 @@ export function Logo({ className }: { className?: string }) {
       alt="DeehZigner"
       width={605}
       height={266}
+      loading="eager"
       className={cn("h-9 w-auto", className)}
     />
   );

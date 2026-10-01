@@ -4,8 +4,8 @@ import { navLinks, site, whatsappUrl } from "@/lib/site";
 
 export function Footer() {
   return (
-    <footer className="border-t border-border bg-background">
-      <div className="mx-auto flex max-w-6xl flex-col gap-8 px-5 py-12 lg:px-8">
+    <footer className="border-t border-border bg-background px-5 lg:px-20">
+      <div className="mx-auto flex max-w-6xl flex-col gap-8 py-12">
         <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
           <a href="#top" aria-label="DeehZigner — início">
             <Logo />

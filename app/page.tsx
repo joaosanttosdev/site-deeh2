@@ -7,6 +7,7 @@ import { Faq } from "@/components/site/faq";
 import { Contact } from "@/components/site/contact";
 import { Footer } from "@/components/site/footer";
 import { WhatsAppFab } from "@/components/site/whatsapp-fab";
+import { RevealObserver } from "@/components/site/reveal-observer";
 
 export default function Home() {
   return (
@@ -22,6 +23,7 @@ export default function Home() {
       </main>
       <Footer />
       <WhatsAppFab />
+      <RevealObserver />
     </>
   );
 }

@@ -3,6 +3,7 @@ import Image from "next/image";
 
 import { cn } from "@/lib/utils";
 import { services } from "@/lib/site";
+import { revealDelay } from "@/lib/reveal";
 
 /*
  * Mesmo esquema do hero: mobile first (lista em um card), e a partir de `xl`
@@ -48,12 +49,13 @@ export function Services() {
   return (
     <section
       id="atuacao"
-      className="@container scroll-mt-20 bg-black px-4 py-10 sm:px-6 sm:py-14 xl:p-0"
+      className="@container scroll-mt-20 bg-black px-5 py-10 sm:py-14 lg:px-20 xl:py-0"
     >
       <div className="relative mx-auto [--u:calc(min(100cqw,1920px)/1440)] xl:aspect-[1440/810] xl:w-[calc(1440*var(--u))]">
         {/* Fundo do card (no desktop é só decoração; os itens ficam na prancheta) */}
         <div
           aria-hidden
+          data-reveal="zoom"
           className="hidden rounded-[calc(8*var(--u))] bg-[#1b1b1c] xl:absolute xl:top-[calc(40*var(--u))] xl:left-[calc(58*var(--u))] xl:block xl:h-[calc(729.5*var(--u))] xl:w-[calc(1323.75*var(--u))]"
         />
         {dividers.map(([y, h]) => (
@@ -75,7 +77,7 @@ export function Services() {
               <li
                 key={service.title}
                 className={cn(
-                  "flex items-start gap-4 py-6 sm:gap-5 md:py-6 xl:contents",
+                  "group flex items-start gap-4 py-6 sm:gap-5 md:py-6 xl:contents",
                   index > 0 && "border-t border-[#58595b] md:border-t-0",
                   index % 2 === 0
                     ? "md:pr-7"
@@ -87,20 +89,33 @@ export function Services() {
                   alt=""
                   width={w}
                   height={h}
+                  data-reveal="zoom"
                   className={cn(
                     place,
-                    "h-auto w-14 shrink-0 sm:w-16 xl:w-[calc(var(--w)*var(--u))]",
+                    "h-auto w-14 shrink-0 transition-[scale,filter] duration-300 group-hover:scale-110 group-hover:drop-shadow-[0_0_14px_rgba(145,216,247,0.7)] sm:w-16 xl:w-[calc(var(--w)*var(--u))]",
                   )}
-                  style={at(iconX, iconY, iconW)}
+                  style={{
+                    ...at(iconX, iconY, iconW),
+                    ...revealDelay((index % 2) * 120 + Math.floor(index / 2) * 80),
+                  }}
                 />
 
-                <div className={place} style={at(textX, textY)}>
-                  <h3 className="font-display text-[1.35rem] leading-tight font-bold text-[#91d8f7] xl:text-[calc(24.5*var(--u))] xl:leading-[calc(24*var(--u))] xl:whitespace-nowrap">
+                <div
+                  data-reveal
+                  className={place}
+                  style={{
+                    ...at(textX, textY),
+                    ...revealDelay(
+                      (index % 2) * 120 + Math.floor(index / 2) * 80 + 100,
+                    ),
+                  }}
+                >
+                  <h3 className="font-display text-[1.35rem] leading-tight font-bold text-[#91d8f7] transition-colors duration-300 group-hover:text-[#c8ecfc] xl:text-[calc(24.5*var(--u))] xl:leading-[calc(24*var(--u))] xl:whitespace-nowrap">
                     {service.title}
                   </h3>
                   <span
                     aria-hidden
-                    className="mt-2 block h-px w-32 bg-[#91d8f7] xl:absolute xl:top-[calc(33.25*var(--u))] xl:left-[calc(8.6*var(--u))] xl:mt-0 xl:h-[max(1px,calc(0.75*var(--u)))] xl:w-[calc(197.25*var(--u))]"
+                    className="mt-2 block h-px w-32 origin-left bg-[#91d8f7] transition-[scale] duration-500 group-hover:scale-x-[1.35] xl:absolute xl:top-[calc(33.25*var(--u))] xl:left-[calc(8.6*var(--u))] xl:mt-0 xl:h-[max(1px,calc(0.75*var(--u)))] xl:w-[calc(197.25*var(--u))]"
                   />
                   <p className="mt-3 font-[Arial,Helvetica,sans-serif] text-sm leading-relaxed text-white xl:mt-[calc(26*var(--u))] xl:text-[calc(14*var(--u))] xl:leading-[calc(15.7*var(--u))] xl:whitespace-pre-line">
                     {service.description}

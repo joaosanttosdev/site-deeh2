@@ -4,6 +4,7 @@ import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { WhatsAppIcon } from "@/components/site/icons";
 import { site, whatsappUrl } from "@/lib/site";
+import { revealDelay } from "@/lib/reveal";
 
 /*
  * Mesmo esquema do hero: mobile first (texto em cima, card embaixo) e, a
@@ -71,7 +72,7 @@ export function Contact() {
   return (
     <section
       id="contato"
-      className="@container relative scroll-mt-20 overflow-hidden bg-black pt-16 pb-24 sm:pt-20 xl:p-0"
+      className="@container relative scroll-mt-20 overflow-hidden bg-black px-5 pt-16 pb-24 sm:pt-20 lg:px-20 xl:py-0"
     >
       <Image
         src="/about/bg.jpg"
@@ -81,7 +82,7 @@ export function Contact() {
         className="object-cover object-bottom"
       />
 
-      <div className="relative mx-auto flex max-w-xl flex-col px-5 [--u:calc(min(100cqw,1920px)/1440)] sm:max-w-2xl xl:block xl:aspect-[1440/810] xl:w-[calc(1440*var(--u))] xl:max-w-none xl:px-0">
+      <div className="relative mx-auto flex max-w-xl flex-col [--u:calc(min(100cqw,1920px)/1440)] sm:max-w-2xl xl:block xl:aspect-[1440/810] xl:w-[calc(1440*var(--u))] xl:max-w-none">
         {/* Rótulo */}
         <p
           className={cn(
@@ -90,6 +91,7 @@ export function Contact() {
             "flex items-center gap-[0.35em] text-sm leading-[1.117] font-bold text-[#91d8f7] xl:text-[calc(16.2*var(--u))]",
           )}
           style={at(90, 210.4)}
+          data-reveal
         >
           <span
             aria-hidden
@@ -105,7 +107,8 @@ export function Contact() {
             arial,
             "mt-3 text-[2.15rem] leading-[1.05] font-bold text-white sm:text-[2.75rem] xl:mt-0 xl:text-[calc(47.67*var(--u))] xl:leading-[calc(48.1*var(--u))] xl:whitespace-nowrap",
           )}
-          style={at(91.3, 241.9)}
+          style={{ ...at(91.3, 241.9), ...revealDelay(80) }}
+          data-reveal
         >
           Vamos conversar sobre <br className="hidden xl:inline" />
           seu{" "}
@@ -121,14 +124,15 @@ export function Contact() {
             arial,
             "mt-4 text-base leading-[1.117] font-bold text-white xl:mt-0 xl:origin-top-left xl:scale-x-[0.9334] xl:text-[calc(16.2*var(--u))] xl:whitespace-nowrap",
           )}
-          style={at(88.2, 362.45)}
+          style={{ ...at(88.2, 362.45), ...revealDelay(160) }}
+          data-reveal
         >
           Tire suas dúvidas ou comece seu projeto agora mesmo.
         </p>
 
         {/* Canais */}
         <ul className="mt-8 flex flex-col gap-5 xl:contents">
-          {channels.map((channel) => {
+          {channels.map((channel, index) => {
             const [iconW, iconH] = channel.size;
             const value = (
               <span
@@ -144,14 +148,18 @@ export function Contact() {
             return (
               <li
                 key={channel.label}
-                className="flex items-center gap-4 xl:contents"
+                className="group flex items-center gap-4 xl:contents"
               >
                 <span
                   className={cn(
                     place,
-                    "flex size-12 shrink-0 items-center justify-center rounded-[10px] border border-[#91d8f7] bg-black xl:size-auto xl:h-[calc(50.5*var(--u))] xl:w-[calc(49.75*var(--u))] xl:rounded-[calc(10*var(--u))]",
+                    "flex size-12 shrink-0 items-center justify-center rounded-[10px] border border-[#91d8f7] bg-black transition-[box-shadow,background-color] duration-300 group-hover:bg-[#0b1a22] group-hover:shadow-[0_0_18px_rgba(145,216,247,0.45)] xl:size-auto xl:h-[calc(50.5*var(--u))] xl:w-[calc(49.75*var(--u))] xl:rounded-[calc(10*var(--u))]",
                   )}
-                  style={at(88.75, channel.y)}
+                  style={{
+                    ...at(88.75, channel.y),
+                    ...revealDelay(220 + index * 90),
+                  }}
+                  data-reveal="zoom"
                 >
                   <Image
                     src={`/contact/${channel.icon}.webp`}
@@ -165,7 +173,11 @@ export function Contact() {
 
                 <div
                   className={cn(place, arial, "min-w-0 text-white")}
-                  style={at(153.2, channel.y + 4.5)}
+                  style={{
+                    ...at(153.2, channel.y + 4.5),
+                    ...revealDelay(260 + index * 90),
+                  }}
+                  data-reveal="right"
                 >
                   <span className="block text-[1.05rem] leading-[1.117] font-bold xl:origin-top-left xl:scale-x-[0.9663] xl:text-[calc(17.16*var(--u))]">
                     {channel.label}
@@ -191,9 +203,14 @@ export function Contact() {
         </ul>
 
         {/* Card CTA */}
-        <div className="relative mt-12 flex flex-col items-center rounded-2xl border-[1.5px] border-[#91d8f7] bg-black px-6 py-9 text-center xl:contents">
+        <div
+          data-reveal="zoom"
+          className="relative mt-12 flex flex-col items-center rounded-2xl border-[1.5px] border-[#91d8f7] bg-black px-6 py-9 text-center xl:contents"
+        >
           <span
             aria-hidden
+            data-reveal="zoom"
+            style={revealDelay(150)}
             className="hidden xl:absolute xl:top-[calc(244*var(--u))] xl:left-[calc(732.5*var(--u))] xl:block xl:h-[calc(422.75*var(--u))] xl:w-[calc(589.75*var(--u))] xl:rounded-[calc(16*var(--u))] xl:border-[calc(1.5*var(--u))] xl:border-[#91d8f7] xl:bg-black"
           />
 
@@ -203,7 +220,8 @@ export function Contact() {
               arial,
               "text-2xl leading-[1.117] font-bold text-white xl:w-[calc(589.75*var(--u))] xl:text-[calc(23.87*var(--u))]",
             )}
-            style={at(732.5, 287.35)}
+            style={{ ...at(732.5, 287.35), ...revealDelay(280) }}
+            data-reveal
           >
             <span className="inline-block xl:scale-x-[1.0264]">
               Pronto para começar?
@@ -216,7 +234,8 @@ export function Contact() {
               arial,
               "mt-4 max-w-sm text-base leading-snug text-white xl:mt-0 xl:w-[calc(589.75*var(--u))] xl:max-w-none xl:text-[calc(17.55*var(--u))] xl:leading-[calc(23.5*var(--u))]",
             )}
-            style={at(732.5, 328.5)}
+            style={{ ...at(732.5, 328.5), ...revealDelay(360) }}
+            data-reveal
           >
             <span className="inline-block xl:scale-x-[0.9213]">
               Clique no botão abaixo e me conte sobre o seu{" "}
@@ -232,9 +251,10 @@ export function Contact() {
             height={300}
             className={cn(
               place,
-              "mt-7 size-24 rounded-full xl:mt-0 xl:size-[calc(98.75*var(--u))]",
+              "mt-7 size-24 rounded-full transition-[scale] duration-300 hover:scale-105 xl:mt-0 xl:size-[calc(98.75*var(--u))]",
             )}
-            style={at(978, 408)}
+            style={{ ...at(978, 408), ...revealDelay(440) }}
+            data-reveal
           />
 
           <p
@@ -243,7 +263,8 @@ export function Contact() {
               arial,
               "mt-3 text-[0.95rem] leading-[1.117] text-white xl:mt-0 xl:w-[calc(589.75*var(--u))] xl:text-[calc(15.38*var(--u))]",
             )}
-            style={at(732.5, 519)}
+            style={{ ...at(732.5, 519), ...revealDelay(500) }}
+            data-reveal
           >
             <span className="inline-block xl:scale-x-[0.9213]">
               {site.owner}
@@ -257,9 +278,10 @@ export function Contact() {
             className={cn(
               place,
               arial,
-              "mt-7 flex h-14 w-full max-w-[244px] items-center justify-center gap-2.5 rounded-[10px] bg-[#33cc66] text-base font-bold text-white transition-colors hover:bg-[#2db85b] xl:mt-0 xl:h-[calc(56*var(--u))] xl:w-[calc(244*var(--u))] xl:max-w-none xl:gap-[calc(9.3*var(--u))] xl:rounded-[calc(10*var(--u))] xl:text-[calc(16.15*var(--u))]",
+              "mt-7 flex h-14 w-full max-w-[244px] items-center justify-center gap-2.5 rounded-[10px] animate-wa-pulse bg-[#33cc66] text-base font-bold text-white transition-[scale,background-color] duration-300 hover:scale-[1.04] hover:bg-[#2db85b] xl:mt-0 xl:h-[calc(56*var(--u))] xl:w-[calc(244*var(--u))] xl:max-w-none xl:gap-[calc(9.3*var(--u))] xl:rounded-[calc(10*var(--u))] xl:text-[calc(16.15*var(--u))]",
             )}
-            style={at(904.5, 569)}
+            style={{ ...at(904.5, 569), ...revealDelay(580) }}
+            data-reveal
           >
             <WhatsAppIcon className="size-[1.2em] shrink-0" />
             Falar no WhatsApp

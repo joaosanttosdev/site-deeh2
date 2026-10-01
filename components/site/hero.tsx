@@ -3,6 +3,7 @@ import Image from "next/image";
 
 import { cn } from "@/lib/utils";
 import { stats } from "@/lib/site";
+import { CountUp } from "@/components/site/count-up";
 
 /*
  * Mobile first: no celular e no tablet o hero é uma coluna centralizada.
@@ -36,7 +37,7 @@ export function Hero() {
   return (
     <section
       id="top"
-      className="@container relative overflow-hidden bg-black pt-28 pb-14 sm:pt-32 xl:p-0"
+      className="@container relative overflow-hidden bg-black px-5 pt-28 pb-14 sm:pt-32 lg:px-20 xl:py-0"
     >
       <Image
         src="/hero/bg.jpg"
@@ -44,22 +45,23 @@ export function Hero() {
         fill
         fetchPriority="high"
         sizes="100vw"
-        className="object-cover"
+        className="animate-ken-burns object-cover"
       />
 
-      <div className="relative mx-auto flex max-w-xl flex-col items-center px-5 text-center [--u:calc(min(100cqw,1920px)/1440)] sm:max-w-2xl xl:block xl:aspect-[1440/810] xl:w-[calc(1440*var(--u))] xl:max-w-none xl:px-0 xl:text-left">
+      <div className="relative mx-auto flex max-w-xl flex-col items-center text-center [--u:calc(min(100cqw,1920px)/1440)] sm:max-w-2xl xl:block xl:aspect-[1440/810] xl:w-[calc(1440*var(--u))] xl:max-w-none xl:text-left">
         {/* Marca */}
         <Image
           src="/hero/logo.webp"
           alt="DeehZigner"
           width={1400}
           height={1291}
+          loading="eager"
           fetchPriority="high"
           sizes="(min-width: 1280px) 40vw, 360px"
           className={cn(
             place,
             sized,
-            "animate-in-up h-auto w-[250px] sm:w-[340px]",
+            "animate-in-up-float h-auto w-[250px] sm:w-[340px]",
           )}
           style={at(174.5, 96, 537)}
         />
@@ -70,11 +72,12 @@ export function Hero() {
           alt="Crie sua arte!!!"
           width={1200}
           height={616}
+          loading="eager"
           sizes="(min-width: 1280px) 30vw, 300px"
           className={cn(
             place,
             sized,
-            "animate-in-up mt-8 h-auto w-[270px] [animation-delay:80ms] sm:w-[340px] xl:mt-0",
+            "animate-in-up-breathe mt-8 h-auto w-[270px] [animation-delay:80ms,780ms] sm:w-[340px] xl:mt-0",
           )}
           style={at(845.75, 79.75, 429)}
         />
@@ -97,7 +100,7 @@ export function Hero() {
             alt=""
             width={220}
             height={240}
-            className="relative top-[0.12em] -mt-[0.4em] ml-[0.45em] inline-block h-[1.02em] w-auto align-baseline"
+            className="animate-glow relative top-[0.12em] -mt-[0.4em] ml-[0.45em] inline-block h-[1.02em] w-auto align-baseline"
           />
         </h1>
 
@@ -132,7 +135,7 @@ export function Hero() {
                 title={tool.alt}
                 width={140}
                 height={140}
-                className="size-9 xl:size-[calc(34.75*var(--u))]"
+                className="size-9 transition-transform duration-300 hover:-translate-y-1 hover:scale-110 xl:size-[calc(34.75*var(--u))]"
               />
             </li>
           ))}
@@ -179,7 +182,7 @@ export function Hero() {
               style={at(statX[index], 663)}
             >
               <dt className="font-display text-[1.7rem] leading-none font-extrabold text-[#91d8f7] uppercase sm:text-[2.5rem] xl:text-[calc(46*var(--u))]">
-                {stat.value}
+                <CountUp value={stat.value} />
               </dt>
               <dd className="mt-1.5 font-[Arial,Helvetica,sans-serif] text-[0.7rem] leading-tight text-white uppercase sm:text-sm xl:mt-0 xl:pl-[calc(5*var(--u))] xl:text-[calc(14*var(--u))]">
                 {stat.label}

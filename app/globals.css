@@ -200,6 +200,69 @@
   .animate-in-up {
     animation: in-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
   }
+
+  /* Entrada + flutuação contínua (usa `translate`, então compõe com o in-up). */
+  .animate-in-up-float {
+    animation:
+      in-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) both,
+      float 7s ease-in-out 0.7s infinite;
+  }
+
+  /* Entrada + "respiração" suave (usa `scale`). */
+  .animate-in-up-breathe {
+    animation:
+      in-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) both,
+      breathe 4.5s ease-in-out 0.7s infinite;
+  }
+
+  /* Flutuação via `transform` (compõe com o `data-reveal`, que usa `translate`). */
+  .animate-float {
+    animation: float-y 6s ease-in-out infinite;
+  }
+
+  .animate-ken-burns {
+    animation: ken-burns 22s ease-in-out infinite alternate;
+  }
+
+  .animate-glow {
+    animation: glow 2.8s ease-in-out infinite;
+  }
+
+  .animate-wa-pulse {
+    animation: wa-pulse 2.4s ease-out infinite;
+  }
+}
+
+/*
+ * Revelar ao rolar: elementos com `data-reveal` começam invisíveis e entram
+ * quando aparecem na tela (ver components/site/reveal-observer.tsx). A classe
+ * `reveal` no <html> só é colocada via JS, então sem JS tudo fica visível.
+ * Atraso opcional por elemento com a variável `--reveal-delay`.
+ *
+ * Usa as propriedades `translate`/`scale` (e não `transform`), então não
+ * briga com animações que usam `transform`. Evite utilitários `translate-*`
+ * ou `scale-*` no mesmo elemento que tem `data-reveal`.
+ */
+html.reveal [data-reveal] {
+  transition:
+    opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+    translate 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+    scale 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+html.reveal [data-reveal]:not(.is-visible) {
+  opacity: 0;
+  translate: 0 32px;
+}
+html.reveal [data-reveal="left"]:not(.is-visible) {
+  translate: -48px 0;
+}
+html.reveal [data-reveal="right"]:not(.is-visible) {
+  translate: 48px 0;
+}
+html.reveal [data-reveal="zoom"]:not(.is-visible) {
+  translate: none;
+  scale: 0.94;
 }
 
 @keyframes in-up {
@@ -213,11 +276,86 @@
   }
 }
 
+@keyframes float {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+  50% {
+    translate: 0 -12px;
+  }
+}
+
+@keyframes float-y {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes breathe {
+  0%,
+  100% {
+    scale: 1;
+    rotate: 0deg;
+  }
+  50% {
+    scale: 1.035;
+    rotate: -1deg;
+  }
+}
+
+@keyframes ken-burns {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.07) translate(-1%, -1%);
+  }
+}
+
+@keyframes glow {
+  0%,
+  100% {
+    filter: drop-shadow(0 0 0 rgba(145, 216, 247, 0));
+  }
+  50% {
+    filter: drop-shadow(0 0 10px rgba(145, 216, 247, 0.85));
+  }
+}
+
+@keyframes wa-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(51, 204, 102, 0.55);
+  }
+  70%,
+  100% {
+    box-shadow: 0 0 0 14px rgba(51, 204, 102, 0);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
   }
-  .animate-in-up {
+  .animate-in-up,
+  .animate-in-up-float,
+  .animate-in-up-breathe,
+  .animate-float,
+  .animate-ken-burns,
+  .animate-glow,
+  .animate-wa-pulse {
     animation: none;
+  }
+  html.reveal [data-reveal] {
+    transition: none;
+  }
+  html.reveal [data-reveal]:not(.is-visible) {
+    opacity: 1;
+    translate: none;
+    scale: none;
   }
 }

@@ -2,22 +2,28 @@ import Image from "next/image";
 
 import { SectionHeading } from "@/components/site/section-heading";
 import { portfolioCategories, portfolioItems } from "@/lib/site";
+import { revealDelay } from "@/lib/reveal";
 
 export function Portfolio() {
   return (
     <section
       id="portfolio"
-      className="bg-streaks scroll-mt-24 border-t border-border py-20 lg:py-28"
+      className="bg-streaks scroll-mt-24 border-t border-border px-5 py-20 lg:px-20 lg:py-28"
     >
-      <div className="mx-auto max-w-6xl px-5 lg:px-8">
+      <div className="mx-auto max-w-6xl">
         <SectionHeading
+          data-reveal
           eyebrow="Portfólio"
           title="Projetos que já viraram marca"
           description="Uma seleção de identidades e logotipos criados para clientes de diferentes segmentos."
         />
 
         {/* Categorias */}
-        <ul className="mt-10 flex flex-wrap gap-2">
+        <ul
+          data-reveal
+          style={revealDelay(120)}
+          className="mt-10 flex flex-wrap gap-2"
+        >
           {portfolioCategories.map((category) => (
             <li
               key={category.name}
@@ -39,6 +45,8 @@ export function Portfolio() {
           {portfolioItems.map((item, index) => (
             <figure
               key={item.src}
+              data-reveal="zoom"
+              style={revealDelay((index % 4) * 90)}
               className="group relative aspect-square overflow-hidden rounded-xl border border-border bg-white"
             >
               <Image

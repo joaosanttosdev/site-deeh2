@@ -8,15 +8,18 @@ export function SectionHeading({
   description,
   className,
   align = "left",
+  ...rest
 }: {
   eyebrow?: string;
   title: ReactNode;
   description?: ReactNode;
   className?: string;
   align?: "left" | "center";
+  "data-reveal"?: boolean | string;
 }) {
   return (
     <div
+      {...rest}
       className={cn(
         "flex flex-col gap-4",
         align === "center" && "items-center text-center",

@@ -7,6 +7,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { faq } from "@/lib/site";
+import { revealDelay } from "@/lib/reveal";
 
 /*
  * Mobile first; a partir de `xl` segue as medidas da prancheta de 1440×810
@@ -17,9 +18,11 @@ import { faq } from "@/lib/site";
 function Column({
   items,
   idPrefix,
+  delay = 0,
 }: {
   items: typeof faq;
   idPrefix: string;
+  delay?: number;
 }) {
   return (
     <Accordion
@@ -31,7 +34,9 @@ function Column({
         <AccordionItem
           key={item.q}
           value={`${idPrefix}-${index}`}
-          className="rounded-lg border border-[#1e1e1e] bg-[#161415] px-5 not-last:border-b xl:rounded-[calc(8*var(--u))] xl:px-[calc(20*var(--u))]"
+          data-reveal
+          style={revealDelay(delay + index * 90)}
+          className="rounded-lg border border-[#1e1e1e] bg-[#161415] transition-colors duration-300 hover:border-[#91d8f7]/35 data-open:border-[#91d8f7]/45 px-5 not-last:border-b xl:rounded-[calc(8*var(--u))] xl:px-[calc(20*var(--u))]"
         >
           <AccordionTrigger className="items-center gap-4 py-5 text-[0.95rem] font-semibold text-[#ebf0ec] hover:no-underline **:data-[slot=accordion-trigger-icon]:hidden xl:min-h-[calc(59*var(--u))] xl:py-[calc(10*var(--u))] xl:text-[calc(13.6*var(--u))]">
             {item.q}
@@ -57,24 +62,29 @@ export function Faq() {
   return (
     <section
       id="duvidas"
-      className="@container scroll-mt-20 bg-black px-4 py-10 sm:px-6 sm:py-14 xl:p-0"
+      className="@container scroll-mt-20 bg-black px-5 py-10 sm:py-14 lg:px-20 xl:py-0"
     >
       <div className="mx-auto [--u:calc(min(100cqw,1920px)/1440)] xl:w-[calc(1440*var(--u))] xl:py-[calc(59*var(--u))]">
         <div className="mx-auto max-w-6xl rounded-xl bg-[#0a0a0a] px-5 py-12 sm:px-10 sm:py-16 xl:mx-0 xl:ml-[calc(54.5*var(--u))] xl:min-h-[calc(692*var(--u))] xl:w-[calc(1331*var(--u))] xl:max-w-none xl:rounded-none xl:pt-[calc(106*var(--u))] xl:pr-[calc(147*var(--u))] xl:pb-[calc(60*var(--u))] xl:pl-[calc(112*var(--u))]">
-          <p className="flex items-center gap-3 text-xs font-semibold tracking-[0.2em] text-[#3d68e0] uppercase xl:gap-[calc(10*var(--u))] xl:text-[calc(11*var(--u))]">
+          <p
+            data-reveal
+            className="flex items-center gap-3 text-xs font-semibold tracking-[0.2em] text-[#3d68e0] uppercase xl:gap-[calc(10*var(--u))] xl:text-[calc(11*var(--u))]">
             <span
               aria-hidden
               className="h-px w-8 bg-[#3d68e0] xl:h-[max(1px,calc(1*var(--u)))] xl:w-[calc(19.5*var(--u))]"
             />
             Dúvidas
           </p>
-          <h2 className="mt-4 font-heading text-[2rem] leading-tight font-semibold text-[#f3ece2] sm:text-4xl xl:mt-[calc(12*var(--u))] xl:text-[calc(37*var(--u))]">
+          <h2
+            data-reveal
+            style={revealDelay(80)}
+            className="mt-4 font-heading text-[2rem] leading-tight font-semibold text-[#f3ece2] sm:text-4xl xl:mt-[calc(12*var(--u))] xl:text-[calc(37*var(--u))]">
             Perguntas frequentes
           </h2>
 
           <div className="mt-10 grid items-start gap-3 md:grid-cols-2 md:gap-[13px] xl:mt-[calc(50*var(--u))] xl:gap-[calc(13*var(--u))]">
             <Column items={left} idPrefix="l" />
-            <Column items={right} idPrefix="r" />
+            <Column items={right} idPrefix="r" delay={60} />
           </div>
         </div>
       </div>

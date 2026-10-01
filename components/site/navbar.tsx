@@ -35,7 +35,7 @@ export function Navbar() {
           : "border-b border-transparent bg-transparent",
       )}
     >
-      <nav className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-4 lg:px-8">
+      <nav className="mx-auto flex max-w-[1920px] items-center justify-between gap-4 px-5 py-4 lg:px-20">
         <a href="#top" aria-label="DeehZigner — início" className="shrink-0">
           <Logo />
         </a>
