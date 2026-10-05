@@ -82,6 +82,9 @@ export type PortfolioCategory = {
   name: string;
   tags: string[];
 };
+// Os trabalhos aparecem como capa (em rodízio) no card da categoria com o
+// mesmo nome. Categorias sem trabalhos ficam com o card em branco, como no
+// design, até ganharem imagens.
 
 export const portfolioCategories: PortfolioCategory[] = [
   { name: "Logo", tags: ["Logotipo", "Identidade visual", "Sub marca"] },
@@ -97,19 +100,20 @@ export const portfolioCategories: PortfolioCategory[] = [
 export type PortfolioItem = {
   src: string;
   client: string;
+  /** Nome de uma categoria de `portfolioCategories`. */
   category: string;
 };
 
 export const portfolioItems: PortfolioItem[] = [
-  { src: "/portfolio/work-1.webp", client: "Marcela Oliveira · Nutricionista", category: "Logo & Identidade" },
+  { src: "/portfolio/work-1.webp", client: "Marcela Oliveira · Nutricionista", category: "Logo" },
   { src: "/portfolio/work-2.webp", client: "Sparta Solar · Engenharia", category: "Logo" },
   { src: "/portfolio/work-3.webp", client: "Ministério de Louvor T.O.C.P.S", category: "Logo" },
   { src: "/portfolio/work-4.webp", client: "Cel Store · Assistência Técnica", category: "Logo" },
   { src: "/portfolio/work-5.webp", client: "Rancho Frei Damião", category: "Logo" },
   { src: "/portfolio/work-6.webp", client: "Alfa Designer", category: "Logo" },
-  { src: "/portfolio/work-7.jpg", client: "AW Imóveis", category: "Logo & Identidade" },
+  { src: "/portfolio/work-7.jpg", client: "AW Imóveis", category: "Logo" },
   { src: "/portfolio/work-8.jpg", client: "Paulo Henrique · Personal Trainer", category: "Logo" },
-  { src: "/portfolio/work-9.jpg", client: "Marcia Almeida · Advogada", category: "Logo & Identidade" },
+  { src: "/portfolio/work-9.jpg", client: "Marcia Almeida · Advogada", category: "Logo" },
   { src: "/portfolio/work-10.jpg", client: "Hanami · Papelaria Personalizada", category: "Logo" },
   { src: "/portfolio/work-11.jpg", client: "Marcia Moura · Advogada", category: "Logo" },
 ];
