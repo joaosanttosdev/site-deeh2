@@ -102,20 +102,34 @@ export type PortfolioItem = {
   client: string;
   /** Nome de uma categoria de `portfolioCategories`. */
   category: string;
+  /** Link do trabalho publicado; o card da categoria passa a abri-lo. */
+  href?: string;
 };
 
 export const portfolioItems: PortfolioItem[] = [
-  { src: "/portfolio/work-1.webp", client: "Marcela Oliveira · Nutricionista", category: "Logo" },
-  { src: "/portfolio/work-2.webp", client: "Sparta Solar · Engenharia", category: "Logo" },
-  { src: "/portfolio/work-3.webp", client: "Ministério de Louvor T.O.C.P.S", category: "Logo" },
-  { src: "/portfolio/work-4.webp", client: "Cel Store · Assistência Técnica", category: "Logo" },
-  { src: "/portfolio/work-5.webp", client: "Rancho Frei Damião", category: "Logo" },
-  { src: "/portfolio/work-6.webp", client: "Alfa Designer", category: "Logo" },
-  { src: "/portfolio/work-7.jpg", client: "AW Imóveis", category: "Logo" },
-  { src: "/portfolio/work-8.jpg", client: "Paulo Henrique · Personal Trainer", category: "Logo" },
-  { src: "/portfolio/work-9.jpg", client: "Marcia Almeida · Advogada", category: "Logo" },
-  { src: "/portfolio/work-10.jpg", client: "Hanami · Papelaria Personalizada", category: "Logo" },
-  { src: "/portfolio/work-11.jpg", client: "Marcia Moura · Advogada", category: "Logo" },
+  { src: "/portfolio/logo-1.webp", client: "diversos clientes · Logotipos", category: "Logo" },
+  { src: "/portfolio/logo-2.webp", client: "Acert Decor", category: "Logo" },
+  { src: "/portfolio/logo-3.webp", client: "Acert Decor · Padrão da marca", category: "Logo" },
+  { src: "/portfolio/logo-4.webp", client: "Acert Decor · Conceito e paleta", category: "Logo" },
+  { src: "/portfolio/logo-5.webp", client: "Acert Decor · Aplicações", category: "Logo" },
+  { src: "/portfolio/grafica-1.webp", client: "Design Coletivo · Papelaria", category: "Gráfica" },
+  { src: "/portfolio/grafica-2.webp", client: "São Paulo Urban Fest · Banners", category: "Gráfica" },
+  { src: "/portfolio/grafica-3.webp", client: "Café do Sol · Wind banners", category: "Gráfica" },
+  { src: "/portfolio/rede-social-1.webp", client: "sorveteria · Post", category: "Rede social" },
+  { src: "/portfolio/rede-social-2.webp", client: "lanchonete · Post", category: "Rede social" },
+  { src: "/portfolio/rede-social-3.webp", client: "Park Education · Post", category: "Rede social" },
+  { src: "/portfolio/web-1.webp", client: "santtos.dev · Site", category: "Web", href: "https://www.santtos.dev/" },
+  { src: "/portfolio/rotulo-1.webp", client: "produtos artesanais · Rótulos", category: "Rótulos e etiquetas" },
+  { src: "/portfolio/rotulo-2.webp", client: "Organic Brand · Etiquetas", category: "Rótulos e etiquetas" },
+  { src: "/portfolio/desenho-1.webp", client: "ilustração · Alien no hambúrguer", category: "Desenho" },
+  { src: "/portfolio/desenho-2.webp", client: "Sr. Konge · Ilustração", category: "Desenho" },
+  { src: "/portfolio/desenho-3.webp", client: "mascote · Mouse", category: "Desenho" },
+  { src: "/portfolio/estampa-1.webp", client: "Royal Pods · Camiseta", category: "Estampa" },
+  { src: "/portfolio/estampa-2.webp", client: "caneca personalizada", category: "Estampa" },
+  { src: "/portfolio/estampa-3.webp", client: "Tardezinha do Baby · Camiseta", category: "Estampa" },
+  { src: "/portfolio/fachada-1.webp", client: "Evolution Modas · Fachada", category: "Fachada" },
+  { src: "/portfolio/fachada-2.webp", client: "Diamond Motors · Fachada", category: "Fachada" },
+  { src: "/portfolio/fachada-3.webp", client: "Drogaria Lucas · Fachada", category: "Fachada" },
 ];
 
 export const faq = [

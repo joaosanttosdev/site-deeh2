@@ -33,6 +33,7 @@ export function Portfolio() {
           const works = portfolioItems.filter(
             (item) => item.category === category.name,
           );
+          const link = works.find((item) => item.href);
 
           return (
             <li
@@ -62,6 +63,16 @@ export function Portfolio() {
                   ))}
                 </ul>
               </div>
+
+              {link && (
+                <a
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`${category.name}: ver ${link.client}`}
+                  className="absolute inset-0 focus-visible:outline-2 focus-visible:outline-offset-[-4px] focus-visible:outline-[#1f6fb8]"
+                />
+              )}
             </li>
           );
         })}
