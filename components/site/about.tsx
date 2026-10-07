@@ -32,7 +32,7 @@ export function About() {
         alt=""
         fill
         sizes="100vw"
-        className="object-cover object-bottom"
+        className="bg-fade-y object-cover object-bottom"
       />
 
       <div className="relative mx-auto flex max-w-xl flex-col [--u:calc(min(100cqw,1920px)/1440)] sm:max-w-2xl xl:block xl:aspect-[1440/810] xl:w-[calc(1440*var(--u))] xl:max-w-none">

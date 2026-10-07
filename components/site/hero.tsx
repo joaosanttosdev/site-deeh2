@@ -39,15 +39,18 @@ export function Hero() {
       id="top"
       className="@container relative overflow-hidden bg-black px-5 pt-28 pb-14 sm:pt-32 lg:px-20 xl:py-0"
     >
-      <Image
-        src="/hero/bg.jpg"
-        alt=""
-        fill
-        loading="eager"
-        fetchPriority="low"
-        sizes="100vw"
-        className="animate-ken-burns object-cover"
-      />
+      {/* Máscara no wrapper: o zoom lento (ken burns) não desloca o degradê. */}
+      <div aria-hidden className="bg-fade-b absolute inset-0 overflow-hidden">
+        <Image
+          src="/hero/bg.jpg"
+          alt=""
+          fill
+          loading="eager"
+          fetchPriority="low"
+          sizes="100vw"
+          className="animate-ken-burns object-cover"
+        />
+      </div>
 
       <div className="relative mx-auto flex max-w-xl flex-col items-center text-center [--u:calc(min(100cqw,1920px)/1440)] sm:max-w-2xl xl:block xl:aspect-[1440/810] xl:w-[calc(1440*var(--u))] xl:max-w-none xl:text-left">
         {/* Marca */}

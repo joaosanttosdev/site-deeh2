@@ -83,7 +83,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="pt-BR"
       className={`dark ${inter.variable} ${poppins.variable} ${leagueSpartan.variable} ${greatVibes.variable} h-full`}
     >
-      <body className="min-h-full flex flex-col bg-background text-foreground">
+      <body className="min-h-full flex flex-col bg-black text-foreground">
         {children}
       </body>
     </html>

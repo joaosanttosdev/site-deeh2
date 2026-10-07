@@ -24,7 +24,7 @@ export function Portfolio() {
         alt=""
         fill
         sizes="100vw"
-        className="object-cover object-top"
+        className="bg-fade-y object-cover object-top"
       />
       <h2 className="sr-only">Portfólio</h2>
 

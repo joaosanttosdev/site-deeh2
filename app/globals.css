@@ -183,6 +183,32 @@
       );
   }
 
+  /*
+   * Fundos de listras: degradê nas bordas para a imagem sumir no preto das
+   * seções vizinhas, sem corte seco entre uma tela e outra.
+   * `bg-fade-y` = em cima e embaixo; `bg-fade-b` = só embaixo (topo da página).
+   */
+  .bg-fade-y,
+  .bg-fade-b {
+    --fade: min(160px, 18%);
+  }
+  .bg-fade-y {
+    mask-image: linear-gradient(
+      to bottom,
+      transparent,
+      #000 var(--fade),
+      #000 calc(100% - var(--fade)),
+      transparent
+    );
+  }
+  .bg-fade-b {
+    mask-image: linear-gradient(
+      to bottom,
+      #000 calc(100% - var(--fade)),
+      transparent
+    );
+  }
+
   .text-gradient {
     background: linear-gradient(100deg, #cfe8ff 0%, #35a0ff 45%, #6d5efc 100%);
     -webkit-background-clip: text;
