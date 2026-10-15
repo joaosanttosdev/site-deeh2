@@ -53,7 +53,7 @@ export function CoverRotator({
           fill
           sizes="(min-width: 1280px) 22vw, (min-width: 640px) 45vw, 90vw"
           className={cn(
-            "object-contain transition-opacity duration-700",
+            "object-cover transition-opacity duration-700",
             i === index ? "opacity-100" : "opacity-0",
           )}
           aria-hidden={i !== index}

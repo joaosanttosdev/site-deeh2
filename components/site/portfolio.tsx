@@ -43,12 +43,12 @@ export function Portfolio() {
               className="group relative aspect-square overflow-hidden bg-white"
             >
               {works.length > 0 && (
-                <div className="absolute inset-x-[14%] top-[5%] bottom-[52%] sm:inset-x-[8%] sm:bottom-[28%] xl:bottom-[24%] transition-[scale] duration-500 group-hover:scale-105">
+                <div className="absolute inset-0 transition-[scale] duration-500 group-hover:scale-105">
                   <CoverRotator items={works} />
                 </div>
               )}
 
-              <div className="absolute inset-x-0 bottom-0 px-3 pb-3 sm:px-4 sm:pb-4 xl:px-[calc(13.7*var(--u))] xl:pb-[calc(17*var(--u))]">
+              <div className="absolute inset-x-0 bottom-0 bg-white px-3 pt-2.5 pb-3 sm:px-4 sm:pt-3 sm:pb-4 xl:px-[calc(13.7*var(--u))] xl:pt-[calc(12*var(--u))] xl:pb-[calc(17*var(--u))]">
                 <h3 className="font-[Arial_Black,Arial,Helvetica,sans-serif] text-[13px] leading-none font-black sm:text-[15px] tracking-[0.03em] text-[#6d6e71] uppercase transition-colors duration-300 group-hover:text-[#1f6fb8] xl:text-[max(13px,calc(12*var(--u)))]">
                   {category.name}
                 </h3>

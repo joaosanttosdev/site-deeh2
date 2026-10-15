@@ -106,20 +106,6 @@ export function About() {
           estratégica para marcas. Domínio de Photoshop, Illustrator, CorelDRAW e
           ferramentas digitais.
         </p>
-
-        <p
-          className={cn(
-            place,
-            arial,
-            "mt-4 text-base leading-relaxed text-white text-pretty sm:text-lg xl:mt-0 xl:w-[calc(490*var(--u))] xl:origin-top-left xl:scale-x-[0.889] xl:text-[calc(19.72*var(--u))] xl:leading-[calc(22*var(--u))]",
-          )}
-          style={{ ...at(836.9, 598), ...revealDelay(420) }}
-          data-reveal
-        >
-          Busco oportunidade home office para atuar com design
-          <br className="hidden xl:inline" /> criativo e comunicação visual de
-          alto impacto.
-        </p>
       </div>
     </section>
   );
