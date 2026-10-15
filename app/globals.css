@@ -187,26 +187,38 @@
    * Fundos de listras: degradê nas bordas para a imagem sumir no preto das
    * seções vizinhas, sem corte seco entre uma tela e outra.
    * `bg-fade-y` = em cima e embaixo; `bg-fade-b` = só embaixo (topo da página).
+   *
+   * A rampa é "eased" (várias paradas numa curva suave) em vez de linear:
+   * um degradê linear deixa uma linha visível onde a imagem começa a sumir.
+   * `--fade` é o tamanho da transição.
    */
   .bg-fade-y,
   .bg-fade-b {
-    --fade: min(160px, 18%);
+    --fade: min(320px, 34%);
+    --ease-in: transparent 0,
+      rgb(0 0 0 / 0.03) calc(var(--fade) * 0.15),
+      rgb(0 0 0 / 0.12) calc(var(--fade) * 0.3),
+      rgb(0 0 0 / 0.3) calc(var(--fade) * 0.45),
+      rgb(0 0 0 / 0.55) calc(var(--fade) * 0.6),
+      rgb(0 0 0 / 0.8) calc(var(--fade) * 0.78),
+      rgb(0 0 0 / 0.95) calc(var(--fade) * 0.9),
+      #000 var(--fade);
+    --ease-out: #000 calc(100% - var(--fade)),
+      rgb(0 0 0 / 0.95) calc(100% - var(--fade) * 0.9),
+      rgb(0 0 0 / 0.8) calc(100% - var(--fade) * 0.78),
+      rgb(0 0 0 / 0.55) calc(100% - var(--fade) * 0.6),
+      rgb(0 0 0 / 0.3) calc(100% - var(--fade) * 0.45),
+      rgb(0 0 0 / 0.12) calc(100% - var(--fade) * 0.3),
+      rgb(0 0 0 / 0.03) calc(100% - var(--fade) * 0.15),
+      transparent 100%;
   }
   .bg-fade-y {
-    mask-image: linear-gradient(
-      to bottom,
-      transparent,
-      #000 var(--fade),
-      #000 calc(100% - var(--fade)),
-      transparent
-    );
+    mask-image: linear-gradient(to bottom, var(--ease-in), var(--ease-out));
   }
+  /* No hero a transição é menor, para não apagar as listras atrás dos números. */
   .bg-fade-b {
-    mask-image: linear-gradient(
-      to bottom,
-      #000 calc(100% - var(--fade)),
-      transparent
-    );
+    --fade: min(240px, 26%);
+    mask-image: linear-gradient(to bottom, var(--ease-out));
   }
 
   .text-gradient {
