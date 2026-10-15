@@ -6,9 +6,14 @@ import Image from "next/image";
 import { cn } from "@/lib/utils";
 import type { PortfolioItem } from "@/lib/site";
 
+// Posição no rodízio pelo relógio: todos os cards calculam o mesmo "tick",
+// então trocam de imagem juntos, não importa quando entraram na tela.
+const tickAt = (interval: number) => Math.floor(Date.now() / interval);
+
 /**
  * Capa do card de categoria: alterna (crossfade) entre os trabalhos a cada
- * `interval` ms, só enquanto o card está na tela.
+ * `interval` ms, sincronizado entre todos os cards (mesmo instante de troca)
+ * e só enquanto o card está na tela.
  */
 export function CoverRotator({
   items,
@@ -26,20 +31,30 @@ export function CoverRotator({
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
     let timer = 0;
+    const sync = () => setIndex(tickAt(interval) % items.length);
+    // Agenda a próxima troca exatamente na virada do próximo tick.
+    const schedule = () => {
+      timer = window.setTimeout(
+        () => {
+          sync();
+          schedule();
+        },
+        interval - (Date.now() % interval),
+      );
+    };
+
     const observer = new IntersectionObserver(([entry]) => {
-      window.clearInterval(timer);
+      window.clearTimeout(timer);
       if (entry.isIntersecting) {
-        timer = window.setInterval(
-          () => setIndex((i) => (i + 1) % items.length),
-          interval,
-        );
+        sync();
+        schedule();
       }
     });
     observer.observe(el);
 
     return () => {
       observer.disconnect();
-      window.clearInterval(timer);
+      window.clearTimeout(timer);
     };
   }, [items.length, interval]);
 
