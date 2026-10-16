@@ -2,7 +2,7 @@ import Image from "next/image";
 
 import { portfolioCategories, portfolioItems } from "@/lib/site";
 import { revealDelay } from "@/lib/reveal";
-import { CoverRotator } from "@/components/site/cover-rotator";
+import { CoverLink, CoverRotator } from "@/components/site/cover-rotator";
 
 /*
  * Mesmo esquema das outras seções: mobile first (1 → 2 colunas) e, a partir
@@ -33,7 +33,6 @@ export function Portfolio() {
           const works = portfolioItems.filter(
             (item) => item.category === category.name,
           );
-          const link = works.find((item) => item.href);
 
           return (
             <li
@@ -64,12 +63,10 @@ export function Portfolio() {
                 </ul>
               </div>
 
-              {link && (
-                <a
-                  href={link.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={`${category.name}: ver ${link.client}`}
+              {works.some((item) => item.href) && (
+                <CoverLink
+                  items={works}
+                  label={category.name}
                   className="absolute inset-0 focus-visible:outline-2 focus-visible:outline-offset-[-4px] focus-visible:outline-[#1f6fb8]"
                 />
               )}

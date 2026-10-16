@@ -119,6 +119,7 @@ export const portfolioItems: PortfolioItem[] = [
   { src: "/portfolio/rede-social-2.webp", client: "lanchonete · Post", category: "Rede social" },
   { src: "/portfolio/rede-social-3.webp", client: "Park Education · Post", category: "Rede social" },
   { src: "/portfolio/web-1.webp", client: "santtos.dev · Site", category: "Web", href: "https://www.santtos.dev/" },
+  { src: "/portfolio/web-2.webp", client: "Dockmark · Site", category: "Web", href: "https://dockmark.vercel.app/" },
   { src: "/portfolio/rotulo-1.webp", client: "produtos artesanais · Rótulos", category: "Rótulos e etiquetas" },
   { src: "/portfolio/rotulo-2.webp", client: "Organic Brand · Etiquetas", category: "Rótulos e etiquetas" },
   { src: "/portfolio/desenho-1.webp", client: "ilustração · Alien no hambúrguer", category: "Desenho" },

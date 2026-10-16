@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type RefObject } from "react";
 import Image from "next/image";
 
 import { cn } from "@/lib/utils";
@@ -11,27 +11,24 @@ import type { PortfolioItem } from "@/lib/site";
 const tickAt = (interval: number) => Math.floor(Date.now() / interval);
 
 /**
- * Capa do card de categoria: alterna (crossfade) entre os trabalhos a cada
- * `interval` ms, sincronizado entre todos os cards (mesmo instante de troca)
- * e só enquanto o card está na tela.
+ * Índice do trabalho em exibição: avança a cada `interval` ms, sincronizado
+ * entre todos os cards (mesmo instante de troca) e só enquanto `ref` está na
+ * tela.
  */
-export function CoverRotator({
-  items,
-  interval = 2800,
-}: {
-  items: PortfolioItem[];
-  interval?: number;
-}) {
-  const ref = useRef<HTMLDivElement>(null);
+function useRotation(
+  ref: RefObject<HTMLElement | null>,
+  length: number,
+  interval: number,
+) {
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
     const el = ref.current;
-    if (!el || items.length < 2) return;
+    if (!el || length < 2) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
     let timer = 0;
-    const sync = () => setIndex(tickAt(interval) % items.length);
+    const sync = () => setIndex(tickAt(interval) % length);
     // Agenda a próxima troca exatamente na virada do próximo tick.
     const schedule = () => {
       timer = window.setTimeout(
@@ -56,7 +53,21 @@ export function CoverRotator({
       observer.disconnect();
       window.clearTimeout(timer);
     };
-  }, [items.length, interval]);
+  }, [ref, length, interval]);
+
+  return index;
+}
+
+/** Capa do card de categoria: alterna (crossfade) entre os trabalhos. */
+export function CoverRotator({
+  items,
+  interval = 2800,
+}: {
+  items: PortfolioItem[];
+  interval?: number;
+}) {
+  const ref = useRef<HTMLDivElement>(null);
+  const index = useRotation(ref, items.length, interval);
 
   return (
     <div ref={ref} className="absolute inset-0">
@@ -75,5 +86,36 @@ export function CoverRotator({
         />
       ))}
     </div>
+  );
+}
+
+/**
+ * Link do card: abre o trabalho que está na capa no momento (mesmo rodízio
+ * do `CoverRotator`). Sem `href` o `<a>` fica inerte (não clica nem recebe
+ * foco) mas continua na tela, para o rodízio seguir sendo observado.
+ */
+export function CoverLink({
+  items,
+  label,
+  interval = 2800,
+  className,
+}: {
+  items: PortfolioItem[];
+  label: string;
+  interval?: number;
+  className?: string;
+}) {
+  const ref = useRef<HTMLAnchorElement>(null);
+  const item = items[useRotation(ref, items.length, interval)];
+
+  return (
+    <a
+      ref={ref}
+      href={item.href}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={item.href ? `${label}: ver ${item.client}` : undefined}
+      className={className}
+    />
   );
 }
