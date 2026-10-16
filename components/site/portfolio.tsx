@@ -9,9 +9,9 @@ import { CoverLink, CoverRotator } from "@/components/site/cover-rotator";
  * de `xl`, as medidas da prancheta de 1440×810 do design em `--u` (1 px do
  * design, escala com a largura disponível até 1920px).
  *
- * Os cards são as categorias do design. Título e tags ficam um pouco mais
- * escuros/maiores que no arquivo para ter contraste e leitura (no design as
- * tags têm 6,6px, branco sobre cinza-claro).
+ * Os cards são as categorias do design: a capa preenche o card inteiro e o
+ * título e as tags ficam por cima, sobre um degradê preto semitransparente,
+ * para o card se fundir ao fundo escuro da seção.
  */
 export function Portfolio() {
   return (
@@ -39,7 +39,7 @@ export function Portfolio() {
               key={category.name}
               data-reveal="zoom"
               style={revealDelay((index % 4) * 90)}
-              className="group relative aspect-square overflow-hidden bg-white"
+              className="group relative aspect-square overflow-hidden rounded-lg bg-black xl:rounded-[calc(10*var(--u))]"
             >
               {works.length > 0 && (
                 <div className="absolute inset-0 transition-[scale] duration-500 group-hover:scale-105">
@@ -47,15 +47,15 @@ export function Portfolio() {
                 </div>
               )}
 
-              <div className="absolute inset-x-0 bottom-0 bg-white px-3 pt-2.5 pb-3 sm:px-4 sm:pt-3 sm:pb-4 xl:px-[calc(13.7*var(--u))] xl:pt-[calc(12*var(--u))] xl:pb-[calc(17*var(--u))]">
-                <h3 className="font-[Arial_Black,Arial,Helvetica,sans-serif] text-[13px] leading-none font-black sm:text-[15px] tracking-[0.03em] text-[#6d6e71] uppercase transition-colors duration-300 group-hover:text-[#1f6fb8] xl:text-[max(13px,calc(12*var(--u)))]">
+              <div className="absolute inset-x-0 bottom-0 bg-linear-to-t from-black/90 via-black/60 to-transparent px-3 pt-12 pb-3 sm:px-4 sm:pt-16 sm:pb-4 xl:px-[calc(16*var(--u))] xl:pt-[calc(72*var(--u))] xl:pb-[calc(16*var(--u))]">
+                <h3 className="font-[Arial_Black,Arial,Helvetica,sans-serif] text-[13px] leading-none font-black sm:text-[15px] tracking-[0.03em] text-white uppercase transition-colors duration-300 group-hover:text-[#7cc0ff] xl:text-[max(13px,calc(12*var(--u)))]">
                   {category.name}
                 </h3>
                 <ul className="mt-1.5 flex flex-wrap gap-1 sm:mt-2 xl:mt-[calc(6*var(--u))] xl:gap-[calc(3*var(--u))]">
                   {category.tags.map((tag) => (
                     <li
                       key={tag}
-                      className="rounded-full bg-[#e6e7e8] px-1.5 py-0.5 font-[Arial,Helvetica,sans-serif] text-[9px] leading-tight sm:px-2 sm:text-[10px] text-[#58595b] uppercase xl:px-[calc(5*var(--u))] xl:text-[max(9px,calc(7.5*var(--u)))]"
+                      className="rounded-full bg-white/15 px-1.5 py-0.5 font-[Arial,Helvetica,sans-serif] text-[9px] leading-tight font-bold text-white/85 uppercase backdrop-blur-sm sm:px-2 sm:py-1 sm:text-[10px] xl:px-[calc(7*var(--u))] xl:py-[calc(3*var(--u))] xl:text-[max(9px,calc(7.5*var(--u)))]"
                     >
                       {tag}
                     </li>
@@ -67,7 +67,7 @@ export function Portfolio() {
                 <CoverLink
                   items={works}
                   label={category.name}
-                  className="absolute inset-0 focus-visible:outline-2 focus-visible:outline-offset-[-4px] focus-visible:outline-[#1f6fb8]"
+                  className="absolute inset-0 rounded-[inherit] focus-visible:outline-2 focus-visible:outline-offset-[-4px] focus-visible:outline-[#1f6fb8]"
                 />
               )}
             </li>
